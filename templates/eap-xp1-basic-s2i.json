@@ -53,20 +53,21 @@
             "displayName": "Git Reference",
             "description": "Git branch/tag reference",
             "name": "SOURCE_REPOSITORY_REF",
-            "value": "xp-1.0.x",
+            "value": "7.3.x-openshift",
             "required": false
         },
         {
             "displayName": "Context Directory",
             "description": "Path within Git project to build; empty for root project directory.",
             "name": "CONTEXT_DIR",
-            "value": "microprofile-jwt",
+            "value": "helloworld-rs",
             "required": false
         },
         {
             "displayName": "Galleon layers",
             "description": "Comma separated list of Galleon layers to provision a server.",
             "name": "GALLEON_PROVISION_LAYERS",
+            "value": "jaxrs-server",
             "required": false
         },
         {

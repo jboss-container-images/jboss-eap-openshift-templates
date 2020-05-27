@@ -17,7 +17,7 @@
     },
     "labels": {
         "template": "eap-xp1-third-party-db-s2i",
-        "xpaas": "7.3"
+        "xpaas": "1.0"
     },
     "message": "A new EAP based application with SSL support has been created in your project. Please be sure to create the following secrets:\"${CONFIGURATION_NAME}\" containing the datasource configuration details required by the deployed application(s); \"${JGROUPS_ENCRYPT_SECRET}\" containing the ${JGROUPS_ENCRYPT_KEYSTORE} file used for securing JGroups communications.",
     "parameters": [
