@@ -74,6 +74,7 @@
             "displayName": "Galleon layers",
             "description": "Comma separated list of Galleon layers to provision a server.",
             "name": "GALLEON_PROVISION_LAYERS",
+            "value": "cloud-profile,remoting",
             "required": false
         },
         {
@@ -893,6 +894,14 @@
                                     {
                                         "name": "AMQ_MESH_SERVICE_NAME",
                                         "value": "${APPLICATION_NAME}-amq-mesh"
+                                    },
+                                    {
+                                        "name": "AMQ_MULTICAST_PREFIX",
+                                        "value": "queue"
+                                    },
+                                    {
+                                        "name": "AMQ_ANYCAST_PREFIX",
+                                        "value": "topic"
                                     },
                                     {
                                         "name": "AMQ_MESH_SERVICE_NAMESPACE",
