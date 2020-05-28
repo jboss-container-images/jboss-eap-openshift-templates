@@ -220,7 +220,6 @@
         }
     ],
     "objects": [
-
         {
             "kind": "Service",
             "apiVersion": "v1",
@@ -236,7 +235,7 @@
                 }
             },
             "metadata": {
-                "name": "secure-${APPLICATION_NAME}",
+                "name": "${APPLICATION_NAME}",
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 },
