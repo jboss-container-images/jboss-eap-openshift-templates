@@ -67,7 +67,6 @@
             "displayName": "Galleon layers",
             "description": "Comma separated list of Galleon layers to provision a server.",
             "name": "GALLEON_PROVISION_LAYERS",
-            "value": "jaxrs-server",
             "required": false
         },
         {
