@@ -8,8 +8,7 @@ For example, for OpenShift Online, see: https://docs.openshift.com/online/cli_re
 ----
 oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/eap-xp1/jboss-eap-xp1-openjdk11-openshift.json
 
-for resource in eap-xp1-amq-s2i.json \
-  eap-xp1-basic-s2i.json \
+for resource in eap-xp1-basic-s2i.json \
   eap-xp1-third-party-db-s2i.json
 do
   oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/eap-xp1/templates/${resource}
