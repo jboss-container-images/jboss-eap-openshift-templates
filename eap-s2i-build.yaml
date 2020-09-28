@@ -1,0 +1,172 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: eap-s2i-build
+  xpaas: "1.0"
+  app.kubernetes.io/name: ${APPLICATION_IMAGE}
+message: A new ImageStream for your JBoss EAP based application has been created in your project.
+metadata:
+  annotations:
+    description: This template builds an application image based on JBoss EAP from a Git repository using S2I.
+    iconClass: icon-eap
+    openshift.io/display-name: Template to build JBoss EAP application using S2I
+    openshift.io/provider-display-name: Red Hat
+    tags: eap,javaee,java,jboss
+    template.openshift.io/documentation-url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/
+    template.openshift.io/long-description: This template builds an image based on JBoss EAP using S2I.
+    template.openshift.io/support-url: https://access.redhat.com
+  name: eap-s2i-build
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: ${APPLICATION_IMAGE}
+  spec:
+    lookupPolicy:
+      local: true
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: ${APPLICATION_IMAGE}-build-artifacts
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: ${APPLICATION_IMAGE}-build-artifacts
+    annotations:
+      "template.alpha.openshift.io/wait-for-ready": "true"
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${APPLICATION_IMAGE}-build-artifacts:latest
+    source:
+      contextDir: ${CONTEXT_DIR}
+      git:
+        ref: ${SOURCE_REPOSITORY_REF}
+        uri: ${SOURCE_REPOSITORY_URL}
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+        - name: MAVEN_MIRROR_URL
+          value: ${MAVEN_MIRROR_URL}
+        - name: MAVEN_ARGS_APPEND
+          value: ${MAVEN_ARGS_APPEND}
+        - name: GALLEON_PROVISION_LAYERS
+          value: ${GALLEON_PROVISION_LAYERS}
+        - name: GALLEON_PROVISION_DEFAULT_FAT_SERVER
+          value: "true"
+        - name: ARTIFACT_DIR
+          value: ${ARTIFACT_DIR}
+        forcePull: true
+        from:
+          kind: ImageStreamTag
+          name: ${EAP_IMAGE}
+          namespace: ${EAP_IMAGESTREAM_NAMESPACE}
+        incremental: true
+      type: Source
+    triggers:
+    - github:
+        secret: ${GITHUB_WEBHOOK_SECRET}
+      type: GitHub
+    - generic:
+        secret: ${GENERIC_WEBHOOK_SECRET}
+      type: Generic
+    - imageChange: {}
+      type: ImageChange
+    - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: ${APPLICATION_IMAGE}
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${APPLICATION_IMAGE}:latest
+    source:
+      dockerfile: |-
+        FROM ${EAP_RUNTIME_IMAGE}
+        COPY /server $JBOSS_HOME
+        USER root
+        RUN chown -R jboss:root $JBOSS_HOME && chmod -R ug+rwX $JBOSS_HOME
+        USER jboss
+        CMD $JBOSS_HOME/bin/openshift-launch.sh
+      images:
+      - from:
+          kind: ImageStreamTag
+          name: ${APPLICATION_IMAGE}-build-artifacts:latest
+        paths:
+        - destinationDir: .
+          sourcePath: /s2i-output/server/
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: ${EAP_RUNTIME_IMAGE}
+          namespace: ${EAP_IMAGESTREAM_NAMESPACE}
+        imageOptimizationPolicy: SkipLayers
+      type: Docker
+    triggers:
+    - imageChange:
+        from:
+          kind: ImageStreamTag
+          name: ${APPLICATION_IMAGE}-build-artifacts:latest
+      type: ImageChange
+    - type: ConfigChange
+parameters:
+- name: APPLICATION_IMAGE
+  displayName: Application Image Stream
+  description: The name for the application ImageStream. The application image will be tagged with the 'latest' tag.
+  required: true
+- name: EAP_IMAGE 
+  displayName: ImageStream Tag for EAP XP Image
+  description: 'Imagestream tag for EAP Builder Image, for example: jboss-eap-xp1-openjdk11-openshift:1.0'
+  required: true
+- name: EAP_RUNTIME_IMAGE
+  displayName: ImageStream Tag for EAP XP Runtime Image
+  description: 'Imagestream tag for EAP Runtime Image, for example: jboss-eap-xp1-openjdk11-runtime-openshift:1.0'
+  required: true
+- name: EAP_IMAGESTREAM_NAMESPACE
+  displayName: Namespace of the EAP ImageStreams
+  description: >-
+    Namespace in which the ImageStreams for Red Hat Middleware images are
+    installed. These ImageStreams are normally installed in the openshift namespace.
+    You should only need to modify this if you've installed the ImageStreams in a
+    different namespace/project.
+  required: true
+  value: openshift
+- name: SOURCE_REPOSITORY_URL
+  displayName: Git Repository URL
+  description: Git source URI for application
+  required: true
+- name: SOURCE_REPOSITORY_REF
+  displayName: Git Reference
+  description: Git branch/tag reference
+- name: CONTEXT_DIR
+  displayName: Source Context Directory
+  description: Path within the Git repository that contains the application to build; empty for root project directory.
+- name: GITHUB_WEBHOOK_SECRET
+  displayName: Github Webhook Secret
+  description: GitHub Webhook secret to trigger new builds when changes are pushed to the Git repository.
+  generate: expression
+  from: '[\w]{8}'
+- name: GENERIC_WEBHOOK_SECRET
+  displayName: Generic Webhook Secret
+  description: Generic Webhook secret to trigger new builds.
+  generate: expression
+  from: '[\w]{8}'
+- name: GALLEON_PROVISION_LAYERS
+  displayName: Galleon layers
+  description: Comma separated list of Galleon layers to provision a server.  
+- name: MAVEN_MIRROR_URL
+  displayName: Maven mirror URL
+  description: Maven mirror to use for S2I builds
+- name: MAVEN_ARGS_APPEND
+  displayName: Maven Additional Arguments
+  description: Maven additional arguments to use for S2I builds
+  value: -Dcom.redhat.xpaas.repo.jbossorg
+- name: ARTIFACT_DIR
+  description: >-
+    List of directories from which archives will be copied into the deployment
+    folder. If unspecified, all archives in /target will be copied.

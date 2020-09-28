@@ -1,0 +1,227 @@
+= Templates to build applications based on Red Hat JBoss EAP
+:toc:               left
+:icons:             font
+:idprefix:
+:idseparator:       -
+
+== Import EAP Imagestreams in OpenShift
+
+You should have the 'oc' tools available and be logged in to your OpenShift instance. For more details on how to do this, please consult the OpenShift documentation.
+For example, for OpenShift Online, see: https://docs.openshift.com/online/cli_reference/get_started_cli.html
+
+Each versions of EAP provides specific image streams for its builder and runtime images.
+Before you build an application on OpenShift, you must install the imagestream that corresponds to the version of EAP that will run your application.
+
+=== EAP 7.3 ImageStreams
+
+==== EAP 7.3 with OpenJDK 8
+
+[source, bash]
+----
+$ oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-7-openshift-image/eap73/templates/eap73-image-stream.json
+imagestream.image.openshift.io/jboss-eap73-openshift replaced
+imagestream.image.openshift.io/jboss-eap73-runtime-openshift replaced
+----
+
+==== EAP 7.3 with OpenJDK 11
+
+[source, bash]
+----
+$ oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-7-openshift-image/eap73/templates/eap73-openjdk11-image-stream.json
+imagestream.image.openshift.io/jboss-eap73-openjdk11-openshift replaced
+imagestream.image.openshift.io/jboss-eap73-openjdk11-runtime-openshift replaced
+----
+
+==== EAP 7.3 with OpenJDK 11 + OpenJ9
+
+[source, bash]
+----
+$ oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/eap73/eap73-openj9-image-stream.json
+imagestream.image.openshift.io/jboss-eap73-openj9-openshift replaced
+imagestream.image.openshift.io/jboss-eap73-openj9-runtime-openshift replaced
+----
+
+=== EAP XP 1.0 ImageStreams
+
+==== EAP XP 1.0 with OpenJDK 8
+
+[source, bash]
+----
+$ oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/eap-xp1/jboss-eap-xp1-openjdk8-openshift.json
+imagestream.image.openshift.io/jboss-eap-xp1-openjdk8-openshift replaced
+imagestream.image.openshift.io/jboss-eap-xp1-openjdk8-runtime-openshift replaced
+----
+
+==== EAP XP 1.0 with OpenJDK 11
+
+[source, bash]
+----
+$ oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/eap-xp1/jboss-eap-xp1-openjdk11-openshift.json
+imagestream.image.openshift.io/jboss-eap-xp1-openjdk11-openshift replaced
+imagestream.image.openshift.io/jboss-eap-xp1-openjdk11-runtime-openshift replaced
+----
+
+=== Import in `openshift` Namespace
+
+If you have administrative access to the general `openshift` namespace and want the image streams and templates to be accessible by all projects, add `-n openshift` to the `oc replace` command. For example:
+
+[source, bash]
+----
+$ oc replace -n openshift --force -f ...
+----
+
+=== Update Existing Images
+To update to the most recent image tag, use the `oc import-image` command:
+
+[source, bash]
+----
+$ oc import-image jboss-eap-xp1-openjdk11-openshift:1.0
+----
+
+Optionally include namespace to the import:
+[source, bash]
+----
+$ oc -n myproject import-image jboss-eap-xp1-openjdk11-openshift:1.0
+----
+
+== Import the Template for EAP S2I Build
+
+There is a single template to build applications based on EAP.
+To install it, run the command:
+
+[source, bash]
+----
+$ oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/master/eap-s2i-build.yaml
+template.template.openshift.io/eap-s2i-build replaced
+----
+
+Once this template is installed, you can list all its available parameters with:
+
+[source]
+----
+$ oc process --parameters  eap-s2i-build
+NAME                        DESCRIPTION                                                                                                                                                                                                                                                         GENERATOR           VALUE
+APPLICATION_IMAGE           The name for the application ImageStream. The application image will be tagged with the 'latest' tag.                                                                                                                                                                                   
+EAP_IMAGE                   Imagestream tag for EAP Builder Image, for example: jboss-eap-xp1-openjdk11-openshift:1.0                                                                                                                                                                                               
+EAP_RUNTIME_IMAGE           Imagestream tag for EAP Runtime Image, for example: jboss-eap-xp1-openjdk11-runtime-openshift:1.0                                                                                                                                                                                       
+EAP_IMAGESTREAM_NAMESPACE   Namespace in which the ImageStreams for Red Hat Middleware images are installed. These ImageStreams are normally installed in the openshift namespace. You should only need to modify this if you've installed the ImageStreams in a different namespace/project.                       openshift
+SOURCE_REPOSITORY_URL       Git source URI for application                                                                                                                                                                                                                                                          
+SOURCE_REPOSITORY_REF       Git branch/tag reference                                                                                                                                                                                                                                                                
+CONTEXT_DIR                 Path within the Git repository that contains the application to build; empty for root project directory.                                                                                                                                                                                
+GITHUB_WEBHOOK_SECRET       GitHub Webhook secret to trigger new builds when changes are pushed to the Git repository.                                                                                                                                                                          expression          [\w]{8}
+GENERIC_WEBHOOK_SECRET      Generic Webhook secret to trigger new builds.                                                                                                                                                                                                                       expression          [\w]{8}
+GALLEON_PROVISION_LAYERS    Comma separated list of Galleon layers to provision a server.                                                                                                                                                                                                                           
+MAVEN_MIRROR_URL            Maven mirror to use for S2I builds                                                                                                                                                                                                                                                      
+MAVEN_ARGS_APPEND           Maven additional arguments to use for S2I builds                                                                                                                                                                                                                                        -Dcom.redhat.xpaas.repo.jbossorg
+ARTIFACT_DIR                List of directories from which archives will be copied into the deployment folder. If unspecified, all archives in /target will be copied.                                                                                                                                              
+----
+
+== Create an Application Image
+
+[source,bash]
+----
+$ oc process eap-s2i-build \
+  -p APPLICATION_IMAGE=my-app \
+  \
+  -p EAP_IMAGE=jboss-eap-xp1-openjdk11-openshift:1.0 \
+  -p EAP_RUNTIME_IMAGE=jboss-eap-xp1-openjdk11-runtime-openshift:1.0 \
+  -p EAP_IMAGESTREAM_NAMESPACE=$(oc project -q) \
+  \
+  -p SOURCE_REPOSITORY_URL=https://github.com/jboss-developer/jboss-eap-quickstarts.git \
+  -p SOURCE_REPOSITORY_REF=xp-1.0.x\
+  -p CONTEXT_DIR=microprofile-config | oc create -f -
+
+imagestream.image.openshift.io/my-app created
+imagestream.image.openshift.io/my-app-build-artifacts created
+buildconfig.build.openshift.io/my-app-build-artifacts created
+buildconfig.build.openshift.io/my-app created
+----
+
+You can see all the resources created by this template by filtering with the label `app.kubernetes.io/name=<application image>`. For example:
+
+[source,bash]
+----
+$ oc get all -l "app.kubernetes.io/name=my-app"
+NAME                                                    TYPE     FROM           LATEST
+buildconfig.build.openshift.io/my-app                   Docker   Dockerfile     1
+buildconfig.build.openshift.io/my-app-build-artifacts   Source   Git@xp-1.0.x   2
+
+NAME                                                TYPE     FROM           STATUS    STARTED   DURATION
+build.build.openshift.io/my-app-build-artifacts-2   Source   Git@xp-1.0.x   Pending
+
+NAME                                                    IMAGE REPOSITORY                                                                      TAGS   UPDATED
+imagestream.image.openshift.io/my-app                   default-route-openshift-image-registry.apps-crc.testing/demo/my-app
+imagestream.image.openshift.io/my-app-build-artifacts   default-route-openshift-image-registry.apps-crc.testing/demo/my-app-build-artifacts
+----
+
+First, the build-artifacts image will be built using the EAP S2I Builder image:
+
+[source,bash]
+----
+$ oc logs -f bc/my-app-build-artifacts
+Cloning "https://github.com/jboss-developer/jboss-eap-quickstarts.git" ...
+...
+Successfully pushed image-registry.openshift-image-registry.svc:5000/demo/my-app-build-artifacts@sha256:01dc775bb76e00cbd8ccd31d4887e274ebcd6d2279aad39bc98a4fa749da974d
+Push successful
+----
+
+Then the actual application image will be built by using the EAP S2I Runtime image so that it contains only the runtime required to run the application:
+
+[source,bash]
+----
+$ oc logs -f bc/my-app
+...
+Successfully pushed image-registry.openshift-image-registry.svc:5000/demo/my-app@sha256:cb9a98f278af070fbdb78c3c1b04969930d376b9e64334dd670337262764f5c6
+Push successful
+----
+
+The application image can now be used to deploy the application by using the `my-app:latest` imagestream tag.
+
+[source,bash]
+----
+$ oc get is/my-app
+NAME     IMAGE REPOSITORY                                                      TAGS     UPDATED
+my-app   default-route-openshift-image-registry.apps-crc.testing/demo/my-app   latest   9 minutes ago
+----
+
+== Deploy an Application Image Using the EAP Operator
+
+Once the application image has been built, it can be deployed using the EAP Operator by creating a `WildFlyServer` resource:
+
+[source,yaml]
+----
+cat <<EOF | oc apply -f -
+apiVersion: wildfly.org/v1alpha1
+kind: WildFlyServer
+metadata:
+  name: my-app
+spec:
+  applicationImage: my-app:latest
+  replicas: 1
+EOF
+----
+
+The `my-app` `WildFlyServer` resource will use the application image that corresponds to the `my-app:latest` imagestream tag to deploy the application on OpenShit:
+
+[source,bash]
+----
+$ oc describe wfly/my-app
+Name:         my-app
+Namespace:    demo
+API Version:  wildfly.org/v1alpha1
+Kind:         WildFlyServer
+...
+Spec:
+  Application Image:  my-app:latest
+  Replicas:           1
+Status:
+  Hosts:
+    my-app-route-demo.apps-crc.testing
+  Pods:
+    Name:            my-app-0
+    Pod IP:          10.128.0.54
+    State:           ACTIVE
+  Replicas:          1
+  Scalingdown Pods:  0
+Events:              <none>
+----
