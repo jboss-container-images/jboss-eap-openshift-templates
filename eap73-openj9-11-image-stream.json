@@ -2,7 +2,7 @@
     "kind": "List",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jboss73-openj9-image-streams",
+        "name": "jboss73-openj9-11-image-streams",
         "annotations": {
             "description": "JBoss EAP 7.3 imagestream for OpenShift to build and run Jakarta EE applications on RHEL8 with OpenJDK 11 and using the OpenJ9 JVM",
             "openshift.io/provider-display-name": "Red Hat, Inc."
@@ -13,7 +13,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "jboss-eap73-openj9-openshift",
+                "name": "jboss-eap73-openj9-11-openshift",
                 "annotations": {
                     "openshift.io/display-name": "JBoss EAP 7.3 with OpenJDK11 + OpenJ9",
                     "openshift.io/provider-display-name": "Red Hat, Inc.",
@@ -77,7 +77,7 @@
                             "sampleRepo": "https://github.com/jbossas/eap-quickstarts/openshift",
                             "sampleContextDir": "kitchensink",
                             "sampleRef": "7.3.x-openshift",
-                            "version": "latest",
+                            "version": "7.3.0",
                             "openshift.io/display-name": "JBoss EAP 7.3 with OpenJDK11 + OpenJ9"
                         },
                         "referencePolicy": {
@@ -95,7 +95,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "jboss-eap73-openj9-runtime-openshift",
+                "name": "jboss-eap73-openj9-11-runtime-openshift",
                 "annotations": {
                     "openshift.io/display-name": "JBoss EAP 7.3 Runtime Image with OpenJDK11 + OpenJ9",
                     "openshift.io/provider-display-name": "Red Hat, Inc.",
@@ -159,7 +159,7 @@
                             "sampleRepo": "https://github.com/jbossas/eap-quickstarts/openshift",
                             "sampleContextDir": "kitchensink",
                             "sampleRef": "7.3.x-openshift",
-                            "version": "latest",
+                            "version": "7.3.0",
                             "openshift.io/display-name": "JBoss EAP 7.3 with OpenJDK11 + OpenJ9 (Runtime Image)"
                         },
                         "referencePolicy": {
