@@ -6,17 +6,17 @@
             "iconClass": "icon-eap",
             "tags": "eap,eap-xp,javaee,java,jboss",
             "version": "1.0",
-            "openshift.io/display-name": "JBoss EAP XP 1.0 basic template",
+            "openshift.io/display-name": "JBoss EAP XP 2.0 basic template",
             "openshift.io/provider-display-name": "Red Hat, Inc.",
-            "description": "Example of an application based on JBoss EAP XP. For more information about using this template, see https://github.com/jboss-container-images/jboss-eap-openshift-templates/blob/eap-xp1/README.adoc",
+            "description": "Example of an application based on JBoss EAP XP. For more information about using this template, see https://github.com/jboss-container-images/jboss-eap-openshift-templates/blob/eap-xp2/README.adoc",
             "template.openshift.io/long-description": "This template defines resources needed to develop a JBoss Enterprise Application Platform XP based application, including a build configuration, application deployment configuration and secure communication using edge TLS.",
             "template.openshift.io/documentation-url": "https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/",
             "template.openshift.io/support-url": "https://access.redhat.com"
         },
-        "name": "eap-xp1-basic-s2i"
+        "name": "eap-xp2-basic-s2i"
     },
     "labels": {
-        "template": "eap-xp1-basic-s2i",
+        "template": "eap-xp2-basic-s2i",
         "xpaas": "1.0"
     },
     "message": "A new JBoss EAP XP based application has been created in your project.",
@@ -25,21 +25,21 @@
             "displayName": "Application Name",
             "description": "The name for the application.",
             "name": "APPLICATION_NAME",
-            "value": "eap-xp1-basic-app",
+            "value": "eap-xp2-basic-app",
             "required": true
         },
         {
             "displayName": "EAP XP Image Name",
-            "description": "EAP XP imagestream tag to be used, example: jboss-eap-xp1-openjdk11-openshift:1.0",
+            "description": "EAP XP imagestream tag to be used, example: jboss-eap-xp2-openjdk11-openshift:1.0",
             "name": "EAP_IMAGE_NAME",
-            "value": "jboss-eap-xp1-openjdk11-openshift:1.0",
+            "value": "jboss-eap-xp2-openjdk11-openshift:latest",
             "required": true
         },
         {
             "displayName": "EAP XP Runtime Image Name",
-            "description": "EAP XP Runtime imagestream tag to be used, example: jboss-eap-xp1-openjdk11-runtime-openshift:1.0",
+            "description": "EAP XP Runtime imagestream tag to be used, example: jboss-eap-xp2-openjdk11-runtime-openshift:1.0",
             "name": "EAP_RUNTIME_IMAGE_NAME",
-            "value": "jboss-eap-xp1-openjdk11-runtime-openshift:1.0",
+            "value": "jboss-eap-xp2-openjdk11-runtime-openshift:latest",
             "required": true
         },
         {
