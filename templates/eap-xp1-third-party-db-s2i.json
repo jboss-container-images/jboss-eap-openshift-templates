@@ -6,17 +6,17 @@
             "iconClass": "icon-eap",
             "tags": "eap,eap-xp,javaee,java,jboss",
             "version": "1.0",
-            "openshift.io/display-name": "JBoss EAP XP 2.0 and 3rd party DB driver template",
+            "openshift.io/display-name": "JBoss EAP XP 1.0 and 3rd party DB driver template",
             "openshift.io/provider-display-name": "Red Hat, Inc.",
-            "description": "Example of a JBoss EAP XP application with a 3rd party database. For more information about using this template, see https://github.com/jboss-container-images/jboss-eap-openshift-templates/blob/eap-xp2/README.adoc",
+            "description": "Example of a JBoss EAP XP application with a 3rd party database. For more information about using this template, see https://github.com/jboss-container-images/jboss-eap-openshift-templates/blob/eap-xp1/README.adoc",
             "template.openshift.io/long-description": "This template defines resources needed to develop JBoss Enterprise Application Server based application, including a build configuration, application deployment configuration, using third-party DB drivers and secure communication using passthrough TLS.",
             "template.openshift.io/documentation-url": "https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/",
             "template.openshift.io/support-url": "https://access.redhat.com"
         },
-        "name": "eap-xp2-third-party-db-s2i"
+        "name": "eap-xp1-third-party-db-s2i"
     },
     "labels": {
-        "template": "eap-xp2-third-party-db-s2i",
+        "template": "eap-xp1-third-party-db-s2i",
         "xpaas": "1.0"
     },
     "message": "A new EAP based application with SSL support has been created in your project. Please be sure to create the following secrets:\"${CONFIGURATION_NAME}\" containing the datasource configuration details required by the deployed application(s); \"${JGROUPS_ENCRYPT_SECRET}\" containing the ${JGROUPS_ENCRYPT_KEYSTORE} file used for securing JGroups communications.",
@@ -25,21 +25,21 @@
             "displayName": "Application Name",
             "description": "The name for the application.",
             "name": "APPLICATION_NAME",
-            "value": "eap-xp2-db-app",
+            "value": "eap-xp1-db-app",
             "required": true
         },
         {
             "displayName": "EAP XP Image Name",
-            "description": "EAP XP imagestream tag to use, example: jboss-eap-xp2-openjdk11-openshift:1.0",
+            "description": "EAP XP imagestream tag to use, example: jboss-eap-xp1-openjdk11-openshift:1.0",
             "name": "EAP_IMAGE_NAME",
-            "value": "jboss-eap-xp2-openjdk11-openshift:latest",
+            "value": "jboss-eap-xp1-openjdk11-openshift:1.0",
             "required": true
         },
         {
             "displayName": "EAP XP Runtime Image Name",
-            "description": "EAP XP Runtime imagestream tag to use, example: jboss-eap-xp2-openjdk11-runtime-openshift:1.0",
+            "description": "EAP XP Runtime imagestream tag to use, example: jboss-eap-xp1-openjdk11-runtime-openshift:1.0",
             "name": "EAP_RUNTIME_IMAGE_NAME",
-            "value": "jboss-eap-xp2-openjdk11-runtime-openshift:latest",
+            "value": "jboss-eap-xp1-openjdk11-runtime-openshift:1.0",
             "required": true
         },
         {
