@@ -53,14 +53,14 @@
             "displayName": "Git Reference",
             "description": "Git branch/tag reference",
             "name": "SOURCE_REPOSITORY_REF",
-            "value": "7.3.x-openshift",
+            "value": "xp-2.0.x",
             "required": false
         },
         {
             "displayName": "Context Directory",
             "description": "Path within Git project to build; empty for root project directory.",
             "name": "CONTEXT_DIR",
-            "value": "helloworld-rs",
+            "value": "microprofile-config",
             "required": false
         },
         {
