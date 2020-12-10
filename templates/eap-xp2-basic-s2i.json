@@ -30,14 +30,14 @@
         },
         {
             "displayName": "EAP XP Image Name",
-            "description": "EAP XP imagestream tag to be used, example: jboss-eap-xp2-openjdk11-openshift:1.0",
+            "description": "EAP XP imagestream tag to be used, example: jboss-eap-xp2-openjdk11-openshift:latest",
             "name": "EAP_IMAGE_NAME",
             "value": "jboss-eap-xp2-openjdk11-openshift:latest",
             "required": true
         },
         {
             "displayName": "EAP XP Runtime Image Name",
-            "description": "EAP XP Runtime imagestream tag to be used, example: jboss-eap-xp2-openjdk11-runtime-openshift:1.0",
+            "description": "EAP XP Runtime imagestream tag to be used, example: jboss-eap-xp2-openjdk11-runtime-openshift:latest",
             "name": "EAP_RUNTIME_IMAGE_NAME",
             "value": "jboss-eap-xp2-openjdk11-runtime-openshift:latest",
             "required": true
