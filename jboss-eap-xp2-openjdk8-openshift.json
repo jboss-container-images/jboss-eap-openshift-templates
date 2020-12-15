@@ -17,11 +17,11 @@
                 "annotations": {
                     "openshift.io/display-name": "JBoss EAP XP 2.0 with OpenJDK8",
                     "openshift.io/provider-display-name": "Red Hat",
-                    "version": "1.0"
+                    "version": "2.0"
                 }
             },
             "labels": {
-                "xpaas": "1.0"
+                "xpaas": "2.0"
             },
             "spec": {
                 "tags": [
@@ -44,13 +44,13 @@
                         }
                     },
                     {
-                        "name": "1.0",
+                        "name": "2.0",
                         "annotations": {
                             "description": "JBoss EAP expansion pack 2.0 image for OpenShift to build and run Microservices applications on RHEL7 with OpenJDK8",
                             "iconClass": "icon-eap",
                             "tags": "builder,eap-xp,javaee,java,jboss",
                             "supports": "eap-xp:2,javaee:8,java:8",
-                            "version": "1.0",
+                            "version": "2.0",
                             "openshift.io/display-name": "JBoss EAP XP 2.0 with OpenJDK8"
                         },
                         "referencePolicy": {
@@ -58,7 +58,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.redhat.io/jboss-eap-7/eap-xp2-openjdk8-openshift-rhel7:1.0"
+                            "name": "registry.redhat.io/jboss-eap-7/eap-xp2-openjdk8-openshift-rhel7:2.0"
                         }
                     }
                 ]
@@ -72,11 +72,11 @@
                 "annotations": {
                     "openshift.io/display-name": "JBoss EAP XP 2.0 with OpenJDK8 (Runtime Image)",
                     "openshift.io/provider-display-name": "Red Hat",
-                    "version": "1.0"
+                    "version": "2.0"
                 }
             },
             "labels": {
-                "xpaas": "1.0"
+                "xpaas": "2.0"
             },
             "spec": {
                 "tags": [
@@ -99,13 +99,13 @@
                         }
                     },
                     {
-                        "name": "1.0",
+                        "name": "2.0",
                         "annotations": {
                             "description": "Runtime image for JBoss EAP expansion pack 2.0 to run Microservices applications on RHEL7 with OpenJDK8",
                             "iconClass": "icon-eap",
                             "tags": "runtime,eap-xp,javaee,java,jboss,hidden",
                             "supports": "eap-xp:1,javaee:8,java:8",
-                            "version": "1.0",
+                            "version": "2.0",
                             "openshift.io/display-name": "JBoss EAP XP 2.0 with OpenJDK8 (Runtime Image)"
                         },
                         "referencePolicy": {
@@ -113,7 +113,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.redhat.io/jboss-eap-7/eap-xp2-openjdk8-runtime-openshift-rhel7:1.0"
+                            "name": "registry.redhat.io/jboss-eap-7/eap-xp2-openjdk8-runtime-openshift-rhel7:2.0"
                         }
                     }
                 ]
