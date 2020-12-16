@@ -104,7 +104,7 @@
                             "description": "Runtime image for JBoss EAP expansion pack 2.0 to run Microservices applications on RHEL8 with OpenJDK11.",
                             "iconClass": "icon-eap",
                             "tags": "runtime,eap-xp,javaee,java,jboss,hidden",
-                            "supports": "eap-xp:2,javaee:8,java:8",
+                            "supports": "eap-xp:2,javaee:8,java:11",
                             "version": "2.0",
                             "openshift.io/display-name": "JBoss EAP XP 2.0 with OpenJDK11 (Runtime Image)"
                         },
