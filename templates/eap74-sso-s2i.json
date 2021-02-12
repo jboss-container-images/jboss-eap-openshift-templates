@@ -44,9 +44,9 @@
         },
         {
             "displayName": "SSO Image Name",
-            "description": "Name of the SSO image to use, examples: redhat-sso74-openshift:latest",
+            "description": "Name of the SSO image to use, example: sso74-openshift-rhel8:latest",
             "name": "SSO_IMAGE_NAME",
-            "value": "redhat-sso74-openshift:latest",
+            "value": "sso74-openshift-rhel8:latest",
             "required": true
         },
         {
