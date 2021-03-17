@@ -552,7 +552,13 @@
                         "name": "${APPLICATION_NAME}",
                         "labels": {
                             "deploymentConfig": "${APPLICATION_NAME}",
-                            "application": "${APPLICATION_NAME}"
+                            "application": "${APPLICATION_NAME}",
+                            "com.company": "Red_Hat",
+                            "rht.prod_name": "Red_Hat_Runtimes",
+                            "rht.prod_ver": "2021-Q1",
+                            "rht.comp": "EAP",
+                            "rht.comp_ver": "7.4.0",
+                            "rht.subcomp_t": "Application"
                         }
                     },
                     "spec": {
