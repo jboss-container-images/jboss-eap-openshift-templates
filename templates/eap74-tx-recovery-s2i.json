@@ -5,19 +5,19 @@
         "annotations": {
             "iconClass": "icon-eap",
             "tags": "eap,javaee,java,jboss,hidden",
-            "version": "7.4.0.Beta",
-            "openshift.io/display-name": "JBoss EAP 7.4.0.Beta + AMQ 7 (tx recovery)",
+            "version": "7.4.0",
+            "openshift.io/display-name": "JBoss EAP 7.4.0 + AMQ 7 (tx recovery)",
             "openshift.io/provider-display-name": "Red Hat, Inc.",
-            "description": "An example JBoss Enterprise Application Platform application with transaction recovery configured. For more information about using this template, see https://github.com/jboss-container-images/jboss-eap-7-openshift-image/blob/eap74-beta/README.adoc",
+            "description": "An example JBoss Enterprise Application Platform application with transaction recovery configured. For more information about using this template, see https://github.com/jboss-container-images/jboss-eap-7-openshift-image/blob/eap74/README.adoc",
             "template.openshift.io/long-description": "This template defines resources needed to develop a JBoss Enterprise Application Platform based application, including a build configuration, application deployment configuration and insecure communication using http. The template also demonstrates how to enable automated transaction recovery on scale down of application pods.  Automated transaction recovery is currently Technology Preview.",
             "template.openshift.io/documentation-url": "https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/",
             "template.openshift.io/support-url": "https://access.redhat.com"
         },
-        "name": "eap74-beta-tx-recovery-s2i"
+        "name": "eap74-tx-recovery-s2i"
     },
     "labels": {
-        "template": "eap74-beta-tx-recovery-s2i",
-        "xpaas": "7.4.0.Beta"
+        "template": "eap74-tx-recovery-s2i",
+        "xpaas": "7.4.0"
     },
     "message": "A new JBoss EAP based application has been created in your project.",
     "parameters": [
@@ -30,16 +30,16 @@
         },
         {
             "displayName": "EAP Image Name",
-            "description": "Name of the EAP image to use, example: jboss-eap74-beta-openjdk11-openshift:latest",
+            "description": "Name of the EAP image to use, example: jboss-eap74-openjdk11-openshift:latest",
             "name": "EAP_IMAGE_NAME",
-            "value": "jboss-eap74-beta-openjdk11-openshift:7.4.0.Beta",
+            "value": "jboss-eap74-openjdk11-openshift:7.4.0",
             "required": true
         },
         {
             "displayName": "EAP Runtime Image Name",
-            "description": "Name of the EAP image to use, example: jboss-eap74-beta-openjdk11-runtime-openshift:latest",
+            "description": "Name of the EAP image to use, example: jboss-eap74-openjdk11-runtime-openshift:latest",
             "name": "EAP_RUNTIME_IMAGE_NAME",
-            "value": "jboss-eap74-beta-openjdk11-runtime-openshift:7.4.0.Beta",
+            "value": "jboss-eap74-openjdk11-runtime-openshift:7.4.0",
             "required": true
         },
         {
