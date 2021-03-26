@@ -439,7 +439,13 @@
                         "name": "${APPLICATION_NAME}",
                         "labels": {
                             "deploymentConfig": "${APPLICATION_NAME}",
-                            "application": "${APPLICATION_NAME}"
+                            "application": "${APPLICATION_NAME}",
+                            "com.company": "Red_Hat",
+                            "com.redhat.product-name": "Red_Hat_Runtimes",
+                            "com.redhat.product-version": "2021-Q2",
+                            "com.redhat.component-name": "EAP",
+                            "com.redhat.component-version": "7.4",
+                            "com.redhat.component-type": "application"
                         }
                     },
                     "spec": {
