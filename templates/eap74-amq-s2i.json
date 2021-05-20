@@ -874,7 +874,7 @@
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "${IMAGE_STREAM_NAMESPACE}",
-                                "name": "amq-broker-72-openshift:1.1"
+                                "name": "amq-broker:7.5"
                             }
                         }
                     },
@@ -899,7 +899,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}-amq",
-                                "image": "amq-broker-72-openshift",
+                                "image": "amq-broker",
                                 "imagePullPolicy": "Always",
                                 "readinessProbe": {
                                     "exec": {
