@@ -1,0 +1,77 @@
+# Red Hat JBoss EAP XP 2.0 OpenShift container imagestreams and templates
+
+## Importing Imagestreams and Templates
+
+You should have the 'oc' tools available and be logged in to your OpenShift instance. For more details on how to do this, please consult the OpenShift documentation.
+For example, for OpenShift Online, see: https://docs.openshift.com/online/cli_reference/get_started_cli.html
+[source, bash]
+----
+oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/eap-xp2/jboss-eap-xp2-openjdk11-openshift.json
+
+for resource in eap-xp2-basic-s2i.json \
+  eap-xp2-third-party-db-s2i.json
+do
+  oc replace --force -f https://raw.githubusercontent.com/jboss-container-images/jboss-eap-openshift-templates/eap-xp2/templates/${resource}
+done
+----
+
+If you have administrative access to the general `openshift` namespace and want the image streams and templates to be accessible by all projects, add -n openshift to the oc replace line of the command. For example:
+
+[source, bash]
+----
+oc replace -n openshift --force -f ...
+----
+
+#### Updating Existing Images
+To update to the most recent image:
+
+[source, bash]
+----
+oc import-image jboss-eap-xp2-openjdk11-openshift:latest
+oc import-image jboss-eap-xp2-openjdk11-runtime-openshift:latest
+----
+
+Optionally include namespace to the import:
+[source, bash]
+----
+oc -n myproject import-image jboss-eap-xp2-openjdk11-openshift:latest
+oc -n myproject import-image jboss-eap-xp2-openjdk11-runtime-openshift:latest
+----
+
+#### Creating New Applications With Templates
+Example:
+
+[source, bash]
+----
+oc -n myproject new-app --template=eap-xp2-basic-s2i -p APPLICATION_NAME=eap-xp2-basic-app
+----
+
+or, if a namespace was used with `-n` above:
+[source, bash]
+----
+oc -n myproject new-app --template=eap-xp2-basic-s2i -p APPLICATION_NAME=eap-xp2-basic-app -p IMAGE_STREAM_NAMESPACE=myproject
+----
+
+## Creating Secrets
+
+Some of the included templates require the creation of secrets.
+
+Example:
+[source, bash]
+----
+$ keytool -genkey -keyalg RSA -alias eapdemo-selfsigned -keystore keystore.jks -validity 360 -keysize 2048
+$ oc secrets new eap7-app-secret keystore.jks
+----
+
+Example secrets may also be found here: https://github.com/jboss-openshift/application-templates/tree/master/secrets
+
+[source, bash]
+----
+oc create -n myproject -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/secrets/eap-app-secret.json
+oc create -n myproject -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/secrets/eap7-app-secret.json
+oc create -n myproject -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/secrets/sso-app-secret.json
+----
+
+## License
+
+See link:LICENSE[LICENSE] file.
