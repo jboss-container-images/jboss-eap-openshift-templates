@@ -43,7 +43,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel8:latest"
+                            "name": "registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7:latest"
                         }
                     },
                     {
@@ -64,7 +64,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel8:latest"
+                            "name": "registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel7:latest"
                         }
                     }
                 ]
