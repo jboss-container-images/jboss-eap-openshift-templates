@@ -441,11 +441,11 @@
                             "deploymentConfig": "${APPLICATION_NAME}",
                             "application": "${APPLICATION_NAME}",
                             "com.company": "Red_Hat",
-                            "com.redhat.product-name": "Red_Hat_Runtimes",
-                            "com.redhat.product-version": "2021-Q3",
-                            "com.redhat.component-name": "EAP_XP",
-                            "com.redhat.component-version": "3.0",
-                            "com.redhat.component-type": "application"
+                            "rht.prod_name": "Red_Hat_Runtimes",
+                            "rht.prod_ver": "2022-Q1",
+                            "rht.comp": "EAP_XP",
+                            "rht.comp_ver": "3.0",
+                            "rht.subcomp_t": "application"
                         }
                     },
                     "spec": {
