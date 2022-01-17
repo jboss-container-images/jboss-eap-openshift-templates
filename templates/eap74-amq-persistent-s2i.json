@@ -1,6 +1,6 @@
 {
     "kind": "Template",
-    "apiVersion": "v1",
+    "apiVersion": "template.openshift.io/v1",
     "metadata": {
         "annotations": {
             "iconClass": "icon-eap",
@@ -426,7 +426,7 @@
         },
         {
             "kind": "Route",
-            "apiVersion": "v1",
+            "apiVersion": "route.openshift.io/v1",
             "id": "${APPLICATION_NAME}-http",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
@@ -445,7 +445,7 @@
         },
         {
             "kind": "Route",
-            "apiVersion": "v1",
+            "apiVersion": "route.openshift.io/v1",
             "id": "${APPLICATION_NAME}-https",
             "metadata": {
                 "name": "secure-${APPLICATION_NAME}",
@@ -468,7 +468,7 @@
         },
         {
             "kind": "ImageStream",
-            "apiVersion": "v1",
+            "apiVersion": "image.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
                 "labels": {
@@ -478,7 +478,7 @@
         },
         {
             "kind": "ImageStream",
-            "apiVersion": "v1",
+            "apiVersion": "image.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-build-artifacts",
                 "labels": {
@@ -488,7 +488,7 @@
         },
         {
             "kind": "BuildConfig",
-            "apiVersion": "v1",
+            "apiVersion": "build.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-build-artifacts",
                 "labels": {
@@ -568,8 +568,8 @@
             }
         },
         {
-            "apiVersion": "v1",
             "kind": "BuildConfig",
+            "apiVersion": "build.openshift.io/v1",
             "metadata": {
                 "labels": {
                     "application": "${APPLICATION_NAME}"
@@ -629,7 +629,7 @@
         },
         {
             "kind": "DeploymentConfig",
-            "apiVersion": "v1",
+            "apiVersion": "apps.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
                 "labels": {
@@ -862,7 +862,7 @@
         },
         {
             "kind": "DeploymentConfig",
-            "apiVersion": "v1",
+            "apiVersion": "apps.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-amq",
                 "labels": {
@@ -1040,8 +1040,8 @@
             }
         },
         {
-            "apiVersion": "v1",
             "kind": "PersistentVolumeClaim",
+            "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-amq-claim",
                 "labels": {
