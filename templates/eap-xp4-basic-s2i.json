@@ -1,6 +1,6 @@
 {
     "kind": "Template",
-    "apiVersion": "v1",
+    "apiVersion": "template.openshift.io/v1",
     "metadata": {
         "annotations": {
             "iconClass": "icon-eap",
@@ -166,7 +166,7 @@
     "objects": [
         {
             "kind": "Service",
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "spec": {
                 "ports": [
                     {
@@ -190,7 +190,7 @@
         },
         {
             "kind": "Service",
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "spec": {
                 "publishNotReadyAddresses": true,
                 "clusterIP": "None",
@@ -217,7 +217,7 @@
         },
         {
             "kind": "Route",
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "id": "${APPLICATION_NAME}-https",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
@@ -240,7 +240,7 @@
         },
         {
             "kind": "ImageStream",
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
                 "labels": {
@@ -250,7 +250,7 @@
         },
         {
             "kind": "ImageStream",
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-build-artifacts",
                 "labels": {
@@ -260,7 +260,7 @@
         },
         {
             "kind": "BuildConfig",
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-build-artifacts",
                 "labels": {
@@ -340,7 +340,7 @@
             }
         },
         {
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "kind": "BuildConfig",
             "metadata": {
                 "labels": {
@@ -401,7 +401,7 @@
         },
         {
             "kind": "DeploymentConfig",
-            "apiVersion": "v1",
+            "apiVersion": "template.openshift.io/v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
                 "labels": {
