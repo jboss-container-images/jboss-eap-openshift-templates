@@ -11,7 +11,7 @@
     "items": [
         {
             "kind": "ImageStream",
-            "apiVersion": "v1",
+            "apiVersion": "image.openshift.io/v1",
             "metadata": {
                 "name": "jboss-eap74-openj9-11-openshift",
                 "annotations": {
@@ -72,7 +72,7 @@
         },
         {
             "kind": "ImageStream",
-            "apiVersion": "v1",
+            "apiVersion": "image.openshift.io/v1",
             "metadata": {
                 "name": "jboss-eap74-openj9-11-runtime-openshift",
                 "annotations": {
