@@ -554,11 +554,11 @@
                             "deploymentConfig": "${APPLICATION_NAME}",
                             "application": "${APPLICATION_NAME}",
                             "com.company": "Red_Hat",
-                            "com.redhat.product-name": "Red_Hat_Runtimes",
-                            "com.redhat.product-version": "2021-Q2",
-                            "com.redhat.component-name": "EAP",
-                            "com.redhat.component-version": "7.4",
-                            "com.redhat.component-type": "application"
+                            "rht.prod_name": "Red_Hat_Runtimes",
+                            "rht.prod_ver": "2022-Q1",
+                            "rht.comp": "EAP",
+                            "rht.comp_ver": "7.4",
+                            "rht.subcomp_t": "application"
                         }
                     },
                     "spec": {
