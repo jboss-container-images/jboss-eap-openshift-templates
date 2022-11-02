@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: template.openshift.io/v1
 kind: Template
 labels:
   template: eap-s2i-build
@@ -17,18 +17,18 @@ metadata:
     template.openshift.io/support-url: https://access.redhat.com
   name: eap-s2i-build
 objects:
-- apiVersion: v1
+- apiVersion: image.openshift.io/v1
   kind: ImageStream
   metadata:
     name: ${APPLICATION_IMAGE}
   spec:
     lookupPolicy:
       local: true
-- apiVersion: v1
+- apiVersion: image.openshift.io/v1
   kind: ImageStream
   metadata:
     name: ${APPLICATION_IMAGE}-build-artifacts
-- apiVersion: v1
+- apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     name: ${APPLICATION_IMAGE}-build-artifacts
@@ -75,7 +75,7 @@ objects:
     - imageChange: {}
       type: ImageChange
     - type: ConfigChange
-- apiVersion: v1
+- apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
     name: ${APPLICATION_IMAGE}
