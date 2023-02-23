@@ -4,7 +4,7 @@
     "metadata": {
         "name": "jboss-eap74-openjdk8-rhel8-openshift-image-streams",
         "annotations": {
-            "description": "ImageStream definition for JBoss Enterprise Application Platform 7.4.0 with OpenJDK 8 and RHEL 8",
+            "description": "ImageStream definition for JBoss Enterprise Application Platform 7.4.0 with OpenJDK 8 based on UBI 8",
             "openshift.io/provider-display-name": "Red Hat, Inc."
         }
     },
@@ -15,7 +15,7 @@
             "metadata": {
                 "name": "jboss-eap74-openjdk8-rhel8-openshift",
                 "annotations": {
-                    "openshift.io/display-name": "JBoss EAP 7.4.0 with OpenJDK 8 and RHEL 8",
+                    "openshift.io/display-name": "JBoss EAP 7.4.0 with OpenJDK 8",
                     "openshift.io/provider-display-name": "Red Hat, Inc.",
                     "version": "7.4.0"
                 }
@@ -28,7 +28,7 @@
                     {
                         "name": "latest",
                         "annotations": {
-                            "description": "The latest available build of JBoss EAP 7.4 builder image with OpenJDK 8 and RHEL8.",
+                            "description": "The latest available build of JBoss EAP 7.4 builder image with OpenJDK 8.",
                             "iconClass": "icon-eap",
                             "tags": "builder,eap,javaee,java,jboss,hidden",
                             "supports": "eap:7.4,javaee:8,java:8",
@@ -36,7 +36,7 @@
                             "sampleContextDir": "kitchensink",
                             "sampleRef": "7.4.x",
                             "version": "latest",
-                            "openshift.io/display-name": "JBoss EAP 7.4 with OpenJDK8 and RHEL 8"
+                            "openshift.io/display-name": "JBoss EAP 7.4 with OpenJDK8"
                         },
                         "referencePolicy": {
                             "type": "Local"
@@ -49,7 +49,7 @@
                     {
                         "name": "7.4.0",
                         "annotations": {
-                            "description": "The latest available build of JBoss EAP 7.4.0 builder image with OpenJDK 8 and RHEL8.",
+                            "description": "The latest available build of JBoss EAP 7.4.0 builder image with OpenJDK 8.",
                             "iconClass": "icon-eap",
                             "tags": "builder,eap,javaee,java,jboss,hidden",
                             "supports": "eap:7.4.0,javaee:8,java:8",
@@ -57,7 +57,7 @@
                             "sampleContextDir": "kitchensink",
                             "sampleRef": "7.4.x",
                             "version": "latest",
-                            "openshift.io/display-name": "JBoss EAP 7.4.0 with OpenJDK8 and RHEL8"
+                            "openshift.io/display-name": "JBoss EAP 7.4.0 with OpenJDK8"
                         },
                         "referencePolicy": {
                             "type": "Local"
@@ -76,7 +76,7 @@
             "metadata": {
                 "name": "jboss-eap74-openjdk8-rhel8-runtime-openshift",
                 "annotations": {
-                    "openshift.io/display-name": "JBoss EAP 7.4.0 Runtime Image with OpenJDK 8 and RHEL8",
+                    "openshift.io/display-name": "JBoss EAP 7.4.0 Runtime Image with OpenJDK 8",
                     "openshift.io/provider-display-name": "Red Hat, Inc.",
                     "version": "7.4.0"
                 }
@@ -89,7 +89,7 @@
                     {
                         "name": "latest",
                         "annotations": {
-                            "description": "The latest available build of JBoss EAP 7.4 runtime image with OpenJDK 8 and RHEL8",
+                            "description": "The latest available build of JBoss EAP 7.4 runtime image with OpenJDK 8",
                             "iconClass": "icon-eap",
                             "tags": "builder,eap,javaee,java,jboss,hidden",
                             "supports": "eap:7.4,javaee:8,java:8",
@@ -97,7 +97,7 @@
                             "sampleContextDir": "kitchensink",
                             "sampleRef": "7.4.x",
                             "version": "latest",
-                            "openshift.io/display-name": "JBoss EAP 7.4 with OpenJDK 8 (Runtime Image) and RHEL8"
+                            "openshift.io/display-name": "JBoss EAP 7.4 with OpenJDK 8 (Runtime Image)"
                         },
                         "referencePolicy": {
                             "type": "Local"
@@ -110,7 +110,7 @@
                     {
                         "name": "7.4.0",
                         "annotations": {
-                            "description": "The latest available build of JBoss EAP 7.4.0 runtime image with OpenJDK 8 and RHEL8",
+                            "description": "The latest available build of JBoss EAP 7.4.0 runtime image with OpenJDK 8",
                             "iconClass": "icon-eap",
                             "tags": "builder,eap,javaee,java,jboss,hidden",
                             "supports": "eap:7.4.0,javaee:8,java:8",
@@ -118,7 +118,7 @@
                             "sampleContextDir": "kitchensink",
                             "sampleRef": "7.4.x",
                             "version": "latest",
-                            "openshift.io/display-name": "JBoss EAP 7.4.0 with OpenJDK 8 (Runtime Image) and RHEL8"
+                            "openshift.io/display-name": "JBoss EAP 7.4.0 with OpenJDK 8 (Runtime Image)"
                         },
                         "referencePolicy": {
                             "type": "Local"
